@@ -15,7 +15,16 @@ class ApplicationController < ActionController::Base
     end
 
     rescue_from CanCan::AccessDenied do | exception |
-      redirect_to root_url, alert: exception.message
+      
+      if logged_in?
+        store_location
+        flash[:danger] = "Access denied."
+        redirect_to root_url
+      else
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
     end
     
 end
