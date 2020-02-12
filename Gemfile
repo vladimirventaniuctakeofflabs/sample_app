@@ -38,6 +38,8 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'carrierwave',             '1.2.2'
 gem 'mini_magick',             '4.7.0'
 
+gem 'sidekiq'
+gem 'sinatra', github: 'sinatra/sinatra'
 gem 'cancancan', '~> 1.9'
 
 
