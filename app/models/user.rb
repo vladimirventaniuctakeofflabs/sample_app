@@ -57,7 +57,7 @@ class User < ApplicationRecord
       # Sends activation email.
       def send_activation_email
         # debugger
-        HardWorker.perform_async(self.id, "send_activation_email")
+        HardWorker.perform_async(self.id, "send_activation_email", self.activation_token)
         # UserMailer.account_activation(self).deliver_now
       end
 
@@ -70,7 +70,9 @@ class User < ApplicationRecord
       # Sends password reset email.
       def send_password_reset_email
         # UserMailer.password_reset(self).deliver_now
-        HardWorker.perform_async(self.id, "send_password_reset_email")
+        # debugger
+        # debugger
+        HardWorker.perform_async(self.id, "send_password_reset_email", self.reset_token)
       end
 
       def password_reset_expired?
